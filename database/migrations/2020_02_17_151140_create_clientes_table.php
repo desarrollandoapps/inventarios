@@ -21,6 +21,7 @@ class CreateClientesTable extends Migration
             $table->string('direccion');
             $table->string('formaPago');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -21,6 +21,7 @@ class CreateSubproductosTable extends Migration
             $table->primary(['idProducto', 'idPresentacion']);
             $table->integer('unidades');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

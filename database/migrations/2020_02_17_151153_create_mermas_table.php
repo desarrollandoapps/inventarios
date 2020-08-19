@@ -20,6 +20,7 @@ class CreateMermasTable extends Migration
             $table->foreign('idProducto')->references('id')->on('productos');
             $table->integer('cantidad');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

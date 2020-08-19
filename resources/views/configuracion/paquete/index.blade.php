@@ -27,6 +27,21 @@
             <p>{{$mensaje}}</p>
         </div>
     @endif
+    <div class="ui right aligned grid">
+        <div class="right floated left aligned four wide column">
+            <a href="{{route('paquete.create')}} ">
+                <h2 class="ui header">
+                    <i class="plus circle icon"></i>
+                    <div class="content">
+                        Nuevo paquete
+                        <div class="sub header">
+                            Cree un nuevo paquete
+                        </div>
+                    </div>
+                </h2>
+            </a>
+        </div>
+    </div>
     <table class="ui celled table">
         <thead>
             <tr>
@@ -49,19 +64,25 @@
                 </tr>
               @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="4">
+                    <div class="ui right floated pagination menu">
+                        <a class="icon item" href="{{$paquetes->path() . '?page=1' }} ">
+                            <i class="left chevron icon"></i>
+                        </a>
+                        @for($i = 1; $i <= $paquetes->lastPage(); $i++)
+                            <a class="item" href="{{$paquetes->path() . '?page=' . $i }} ">{{$i}}</a>  
+                        @endfor
+                        <a class="icon item" href="{{$paquetes->path() . '?page=' . $paquetes->lastPage() }} ">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    </div>    
+                </th>
+            </tr>
+        </tfoot>
     </table>
-    <br><br>
-    <a href="{{route('paquete.create')}} ">
-        <h2 class="ui header">
-            <i class="plus circle icon"></i>
-            <div class="content">
-                Nuevo paquete
-                <div class="sub header">
-                    Cree un nuevo paquete
-                </div>
-            </div>
-        </h2>
-    </a>
+    
     <script>
         $('.message .close')
             .on('click', function() {

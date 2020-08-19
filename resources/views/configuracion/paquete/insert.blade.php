@@ -29,8 +29,8 @@
                 <div class="default text">Seleccione un Producto...</div>
                 <div class="menu">
                     @foreach ($productos as $producto)
-                    <div class="item" data-value="{{ $producto->id }}">{{ $producto->nombre }}</div>
-                @endforeach
+                        <div class="item" data-value="{{ $producto->id }}">{{ $producto->nombre }}</div>
+                    @endforeach
                 </div>
             </div>
         </div>

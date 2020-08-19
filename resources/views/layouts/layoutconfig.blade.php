@@ -9,35 +9,11 @@
   <!-- Site Properties -->
   <title>@yield('titulo')</title>
 
-  <link rel="stylesheet" href="{{ asset('semantic/components/site.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/reset.css') }}">
-
-  <link rel="stylesheet" href="{{ asset('semantic/components/container.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/grid.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/header.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/image.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/menu.css') }}">
-
-  <link rel="stylesheet" href="{{ asset('semantic/components/divider.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/list.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/segment.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/dropdown.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/icon.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/button.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/table.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/form.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/message.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/transition.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/modal.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/step.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/rail.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/sticky.css') }}">
-  <link rel="stylesheet" href="{{ asset('semantic/components/footer.css') }}">
+  <link rel="stylesheet" href="{{ asset('semantic/semantic.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
   
   <script src="{{asset('js/jquery.min.js')}}"></script>
-  <script src="{{asset('semantic/components/dropdown.js')}} "></script>
-  <script src="{{asset('semantic/components/transition.js')}} "></script>
-  <script src="{{asset('semantic/components/modal.js')}} "></script>
+  <script src="{{asset('semantic/semantic.js')}} "></script>
   <script src="{{asset('js/sweetalert.min.js')}} "></script>
 
   <style type="text/css">
@@ -72,11 +48,13 @@
       <div class="ui simple dropdown item">
         Opciones <i class="dropdown icon"></i>
         <div class="menu">
-          <a class="item" href="{{route('productoIndex')}} ">Productos</a>
-          <a class="item" href="{{route('presentacionIndex')}}">Presentaciones</a>
-          <a class="item" href="{{route('paqueteIndex')}}">Paquetes</a>
+          <a class="item" href="{{route('categoria.index')}} ">Categorías</a>
+          <a class="item" href="{{route('producto.index')}} ">Productos</a>
+          <a class="item" href="{{route('presentacion.index')}}">Presentaciones</a>
+          <a class="item" href="{{route('paquete.index')}}">Paquetes</a>
           <div class="divider"></div>
-          <a class="item" href="{{route('proveedorIndex')}}">Proveedores</a>
+          <a class="item" href="{{route('proveedor.index')}}">Proveedores</a>
+          <a class="item" href="{{route('cliente.index')}}">Clientes</a>
         </div>
       </div>
     </div>
@@ -96,6 +74,10 @@
       </div>
     </div>
   </div>
+
+  <script>
+    @yield('scripts')
+  </script>
 
 </body>
 </html>

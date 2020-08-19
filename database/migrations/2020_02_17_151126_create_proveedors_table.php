@@ -24,6 +24,7 @@ class CreateProveedorsTable extends Migration
             $table->string('tiemposEntrega');
             $table->string('devoluciones');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

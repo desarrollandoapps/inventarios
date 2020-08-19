@@ -19,6 +19,7 @@ class CreatePedidosTable extends Migration
             $table->foreign('idProveedor')->references('id')->on('proveedors');
             $table->date('fecha');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

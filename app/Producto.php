@@ -3,8 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Producto extends Model
 {
-    protected $fillable = ['nombre', 'cantidad', 'precioUnitario'];
+    use SoftDeletes;
+    protected $fillable = ['nombre', 'cantidad', 'precioUnitario', 'idCategoria'];
 }

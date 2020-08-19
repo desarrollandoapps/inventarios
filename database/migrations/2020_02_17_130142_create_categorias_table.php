@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDespachosTable extends Migration
+class CreateCategoriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateDespachosTable extends Migration
      */
     public function up()
     {
-        Schema::create('despachos', function (Blueprint $table) {
+        Schema::create('categorias', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('idCliente')->unsigned();
-            $table->foreign('idCliente')->references('id')->on('clientes');
-            $table->date('fecha');
+            $table->string('nombre');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +28,6 @@ class CreateDespachosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('despachos');
+        Schema::dropIfExists('categorias');
     }
 }

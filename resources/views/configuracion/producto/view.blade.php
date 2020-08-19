@@ -9,6 +9,11 @@
     </h2>
     <br><br>
     <div class="field">
+        <strong>Categoría:</strong>
+        {{ $producto->categoria }}
+    </div>
+    <br>
+    <div class="field">
         <strong>Nombre:</strong>
         {{ $producto->nombre }}
     </div>

@@ -18,8 +18,8 @@ class PaqueteController extends Controller
                         ->join('presentacions', 'subproductos.idPresentacion', '=', 'presentacions.id')
                         ->select('productos.id as idProducto', 'presentacions.id as idPresentacion', 'productos.nombre as nombreProducto','presentacions.descripcion as presentacion', 'subproductos.unidades as unidades')
                         ->orderby('productos.nombre','asc')
-                        ->get();
-        return view('paquete.index', compact('paquetes'));
+                        ->paginate(10);
+        return view('configuracion.paquete.index', compact('paquetes'));
     }
 
     /**
@@ -31,7 +31,7 @@ class PaqueteController extends Controller
     {
         $productos = App\Producto::select('nombre', 'id')->orderby('nombre', 'asc')->get();
         $presentaciones = App\Presentacion::select('descripcion', 'id')->orderby('descripcion', 'asc')->get();
-        return view ('paquete.insert', compact('productos', 'presentaciones'));
+        return view ('configuracion.paquete.insert', compact('productos', 'presentaciones'));
     }
 
     /**
@@ -68,7 +68,7 @@ class PaqueteController extends Controller
                         ->where([['idProducto', $idProducto], ['idPresentacion', $idPresentacion]])
                         ->orderby('productos.nombre','asc')
                         ->get();
-        return view('paquete.view', compact('paquete'));
+        return view('configuracion.paquete.view', compact('paquete'));
     }
 
     /**
@@ -82,7 +82,7 @@ class PaqueteController extends Controller
         $paquete = App\Subproducto::where('idProducto', $idProducto)->where('idPresentacion', $idPresentacion)->get();
         $productos = App\Producto::select('nombre', 'id')->orderby('nombre', 'asc')->get();
         $presentaciones = App\Presentacion::select('descripcion', 'id')->orderby('descripcion', 'asc')->get();
-        return view('paquete.edit', compact('paquete', 'productos', 'presentaciones'));
+        return view('configuracion.paquete.edit', compact('paquete', 'productos', 'presentaciones'));
     }
 
     /**

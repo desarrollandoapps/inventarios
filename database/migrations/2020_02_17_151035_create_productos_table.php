@@ -18,7 +18,10 @@ class CreateProductosTable extends Migration
             $table->string('nombre');
             $table->integer('cantidad');
             $table->double('precioUnitario');
+            $table->bigInteger('idCategoria')->unsigned();
+            $table->foreign('idCategoria')->references('id')->on('categorias');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

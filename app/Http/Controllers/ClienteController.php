@@ -6,7 +6,7 @@ use App;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ProveedorController extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        $proveedores = App\Proveedor::orderby('nombre', 'asc')->paginate(10);
-        return view ('configuracion.proveedor.index', compact('proveedores'));
+        $clientes = App\Cliente::orderby('nombre', 'asc')->paginate(10);
+        return view('configuracion.cliente.index', compact('clientes'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        return view ('configuracion.proveedor.insert');
+        return view ('configuracion.cliente.insert');
     }
 
     /**
@@ -43,64 +43,58 @@ class ProveedorController extends Controller
             'telefono.required' => 'Debe ingresar el teléfono.',
             'direccion.required' => 'Debe ingresar la dirección.',
             'formaPago.required' => 'Debe ingresar la forma de pago.',
-            'descuento.required' => 'Debe ingresar el descuento.',
-            'tiemposEntrega.required' => 'Debe ingresar la información acerca de los tiempos de entrega.',
-            'devoluciones.required' => 'Debe ingresar la información acerca de las devoluciones.',
         ];
 
         // Validar que los campos obligatorios tengan valor
         $validator = Validator::make($request->all(), [
             'nit'=>'required',
-            'nombre' => 'required|unique:proveedors',
+            'nombre' => 'required|unique:clientes',
             'telefono' => 'required',
             'direccion' => 'required',
             'formaPago' => 'required',
-            'descuento' => 'required',
-            'tiemposEntrega' => 'required',
-            'devoluciones' => 'required',
         ], $mensajes);
 
         if ($validator->fails()) {
-            return redirect('proveedor/create')
+            return redirect('cliente/create')
                         ->withErrors($validator)
                         ->withInput();
         }
 
-        App\Proveedor::create($request->all());
+        App\Cliente::create($request->all());
 
-        return redirect()->route('proveedor.index')
-                        ->with('exito', 'Proveedor creado exitosamente!');
+        return redirect()->route('cliente.index')
+                        ->with('exito', 'Cliente creado exitosamente!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Proveedor  $proveedor
+     * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $proveedor = App\Proveedor::FindorFail($id);
-        return view('configuracion.proveedor.view', compact('proveedor'));
+        $cliente = App\Cliente::FindorFail($id);
+        return view('configuracion.cliente.view', compact('cliente'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Proveedor  $proveedor
+     * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $proveedor = App\Proveedor::FindorFail($id);
-        return view('configuracion.proveedor.edit', compact('proveedor'));
+        $cliente = App\Cliente::FindorFail($id);
+        return view('configuracion.cliente.edit', compact('cliente'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Proveedor  $proveedor
+     * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -110,9 +104,6 @@ class ProveedorController extends Controller
             'telefono.required' => 'Debe ingresar el teléfono.',
             'direccion.required' => 'Debe ingresar la dirección.',
             'formaPago.required' => 'Debe ingresar la forma de pago.',
-            'descuento.required' => 'Debe ingresar el descuento.',
-            'tiemposEntrega.required' => 'Debe ingresar la información acerca de los tiempos de entrega.',
-            'devoluciones.required' => 'Debe ingresar la información acerca de las devoluciones.',
         ];
 
         // Validar que los campos obligatorios tengan valor
@@ -121,39 +112,36 @@ class ProveedorController extends Controller
             'telefono' => 'required',
             'direccion' => 'required',
             'formaPago' => 'required',
-            'descuento' => 'required',
-            'tiemposEntrega' => 'required',
-            'devoluciones' => 'required',
         ], $mensajes);
 
         if ($validator->fails()) {
-            return redirect('proveedor/' . $id . '/edit')
+            return redirect('cliente/' . $id . '/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
-        $proveedor = App\Proveedor::FindorFail($id);
-        $proveedor->update($request->all());
+        $cliente = App\Cliente::FindorFail($id);
+        $cliente->update($request->all());
 
-        return redirect()->route('proveedor.index')
-                        ->with('exito', 'Proveedor modificado exitosamente!');
+        return redirect()->route('cliente.index')
+                        ->with('exito', 'Cliente modificado exitosamente!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Proveedor  $proveedor
+     * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $proveedor = App\Proveedor::FindorFail($id);
+        $cliente = App\Cliente::FindorFail($id);
         try {
-            $proveedor->delete();
-            return redirect()->route('proveedor.index')
-                             ->with('exito', 'Proveedor eliminado exitosamente!');
+            $cliente->delete();
+            return redirect()->route('cliente.index')
+                             ->with('exito', 'Cliente eliminado exitosamente!');
         }catch (\Illuminate\Database\QueryException $e){
-            return redirect()->route('proveedor.index')
-                         ->with('fallo', 'No se pudo eliminar el proveedor');
+            return redirect()->route('cliente.index')
+                         ->with('fallo', 'No se pudo eliminar el cliente');
         }
     }
 }

@@ -27,6 +27,21 @@
             <p>{{$mensaje}}</p>
         </div>
     @endif
+    <div class="ui right aligned grid">
+        <div class="right floated left aligned five wide column">
+            <a href="{{route('presentacion.create')}} ">
+                <h2 class="ui header">
+                    <i class="plus circle icon"></i>
+                    <div class="content">
+                        Nueva presentación
+                        <div class="sub header">
+                            Cree una nueva presentación
+                        </div>
+                    </div>
+                </h2>
+            </a>
+        </div>
+    </div>
     <table class="ui celled table">
         <thead>
             <tr>
@@ -46,19 +61,25 @@
                 </tr>
               @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="2">
+                    <div class="ui right floated pagination menu">
+                        <a class="icon item" href="{{$presentaciones->path() . '?page=1' }} ">
+                            <i class="left chevron icon"></i>
+                        </a>
+                        @for($i = 1; $i <= $presentaciones->lastPage(); $i++)
+                            <a class="item" href="{{$presentaciones->path() . '?page=' . $i }} ">{{$i}}</a>  
+                        @endfor
+                        <a class="icon item" href="{{$presentaciones->path() . '?page=' . $presentaciones->lastPage() }} ">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    </div>    
+                </th>
+            </tr>
+        </tfoot>
     </table>
-    <br><br>
-    <a href="{{route('presentacion.create')}} ">
-        <h2 class="ui header">
-            <i class="plus circle icon"></i>
-            <div class="content">
-                Nueva presentación
-                <div class="sub header">
-                    Cree una nueva presentación
-                </div>
-            </div>
-        </h2>
-    </a>
+    
     <script>
         $('.message .close')
             .on('click', function() {

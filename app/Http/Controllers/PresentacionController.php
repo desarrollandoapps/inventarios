@@ -14,8 +14,8 @@ class PresentacionController extends Controller
      */
     public function index()
     {
-        $presentaciones = App\Presentacion::orderby('descripcion', 'asc')->get();
-        return view ('presentacion.index', compact('presentaciones'));
+        $presentaciones = App\Presentacion::orderby('descripcion', 'asc')->paginate(10);
+        return view ('configuracion.presentacion.index', compact('presentaciones'));
     }
 
     /**
@@ -25,7 +25,7 @@ class PresentacionController extends Controller
      */
     public function create()
     {
-        return view ('presentacion.insert');
+        return view ('configuracion.presentacion.insert');
     }
 
     /**
@@ -42,7 +42,7 @@ class PresentacionController extends Controller
 
         App\Presentacion::create($request->all());
 
-        return redirect()->route('presentacionIndex')
+        return redirect()->route('presentacion.index')
                         ->with('exito', '¡Presentación creada exitosamente!');
     }
 
@@ -55,7 +55,7 @@ class PresentacionController extends Controller
     public function show($id)
     {
         $presentacion = App\Presentacion::FindorFail($id);
-        return view('presentacion.view', compact('presentacion'));
+        return view('configuracion.presentacion.view', compact('presentacion'));
     }
 
     /**
@@ -67,7 +67,7 @@ class PresentacionController extends Controller
     public function edit($id)
     {
         $presentacion = App\Presentacion::FindorFail($id);
-        return view('presentacion.edit', compact('presentacion'));
+        return view('configuracion.presentacion.edit', compact('presentacion'));
     }
 
     /**
@@ -86,8 +86,7 @@ class PresentacionController extends Controller
         ]);
 
         $presentacion->update($request->all());
-
-        return redirect()->route('presentacionIndex')
+        return redirect()->route('presentacion.index')
                         ->with('exito', '¡Presentación modificada exitosamente!');
     }
 
@@ -102,10 +101,10 @@ class PresentacionController extends Controller
         $presentacion = App\Presentacion::FindorFail($id);
         try {
             $presentacion->delete();
-            return redirect()->route('presentacionIndex')
+            return redirect()->route('presentacion.index')
                              ->with('exito', 'Presentación eliminada exitosamente!');
         } catch (\Illuminate\Database\QueryException $e){
-            return redirect()->route('presentacionIndex')
+            return redirect()->route('presentacion.index')
                          ->with('fallo', 'No se pudo eliminar la presentación');
         }
     }
