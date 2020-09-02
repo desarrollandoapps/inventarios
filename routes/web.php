@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,22 +15,27 @@
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+});
 
-Route::resource('categoria', 'CategoriaController');
-Route::resource('producto', 'ProductoController');
-Route::resource('presentacion', 'PresentacionController');
-Route::resource('paquete', 'PaqueteController');
-Route::resource('proveedor', 'ProveedorController');
-Route::resource('cliente', 'ClienteController');
+Auth::routes();
 
-Route::get('configuracion/index', function () {
-    return view('configuracion/index');
-})->name('configuracion');
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('categoria/destroy/{id}', 'CategoriaController@destroy')->name('borrarCategoria');
-Route::get('producto/destroy/{id}', 'ProductoController@destroy')->name('borrarProducto');
-Route::get('presentacion/destroy/{id}', 'PresentacionController@destroy')->name('borrarPresentacion');
-Route::get('paquete/destroy/{idProducto}/{idPresentacion}', 'PaqueteController@destroy')->name('borrarPaquete');
-Route::get('proveedor/destroy/{id}', 'ProveedorController@destroy')->name('borrarProveedor');
-Route::get('cliente/destroy/{id}', 'ClienteController@destroy')->name('borrarCliente');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/profile', 'ProfileController@index')->name('profile');
+    Route::put('/profile', 'ProfileController@update')->name('profile.update');
+    
+    Route::get('/about', function () {
+        return view('about');
+    })->name('about');
+    
+    Route::get('proveedores', 'ProveedorController@index')->name('proveedor.index');
+    Route::post('proveedor-import-list-excel', 'ProveedorController@importExcel')->name('proveedor.import.excel');
+    
+    Route::get('productos', 'ProductoController@index')->name('producto.index');
+    Route::post('producto-import-list-excel', 'ProductoController@importExcel')->name('producto.import.excel');
+    
+    Route::get('ventas', 'VentaController@index')->name('venta.index');
+    Route::post('venta-insert', 'VentaController@insert')->name('venta.insert');
+    Route::post('venta-import-list-excel', 'VentaController@importExcel')->name('venta.import.excel');
+});
