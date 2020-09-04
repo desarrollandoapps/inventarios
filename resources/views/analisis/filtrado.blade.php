@@ -31,6 +31,11 @@
         </div>
     @endif
     
+    <a href="{{route('filtrado.export.excel')}} " class="float-right">
+        Exportar a
+        <img src="{{asset('img/excel.png')}}" alt="excel" class="logo-excel">
+    </a>
+
     <h3 class="mb-3">{{ __('Filtered') }}</h3>
 
     <h4 class="text-center">Año: {{$anio}}</h4>

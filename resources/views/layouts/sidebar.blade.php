@@ -55,10 +55,17 @@
     </div>
 
     <!-- Nav Item  -->
-    <li class="nav-item {{ Nav::isRoute('analisis.filtro') }} {{ Nav::isRoute('analisis.filtrado') }}">
+    <li class="nav-item {{ Nav::isRoute('analisis.filtro') }} {{ Nav::isRoute('analisis.filtrar') }} {{ Nav::isRoute('analisis.filtrado') }}">
         <a class="nav-link" href="{{ route('analisis.filtro') }}">
             <i class="fas fa-fw fa-funnel-dollar"></i>
             <span>{{ __('Filter') }}</span>
+        </a>
+    </li>
+    <!-- Nav Item  -->
+    <li class="nav-item {{ Nav::isRoute('analisis.abc') }}">
+        <a class="nav-link" href="{{ route('analisis.abc') }}">
+            <i class="fas fa-fw fa-sort-amount-down"></i>
+            <span>{{ __('ABC Classification') }}</span>
         </a>
     </li>
 

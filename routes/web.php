@@ -42,4 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('analisis/filtro', 'AnalisisController@verFiltro')->name('analisis.filtro');
     Route::post('analisis/filtrar', 'AnalisisController@filtrar')->name('analisis.filtrar');
     Route::get('analisis/filtrado', 'AnalisisController@filtrar')->name('analisis.filtrado');
+    Route::get('filtrado-export-excel', 'AnalisisController@filtradoExportExcel')->name('filtrado.export.excel');
+    
+    Route::get('analisis/abc', 'AnalisisController@abc')->name('analisis.abc');
 });
