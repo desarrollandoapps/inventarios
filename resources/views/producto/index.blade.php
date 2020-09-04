@@ -15,6 +15,9 @@
             <span aria-hidden="true">&times;</span>
         </div>
     @endif
+
+    <h3 class="mb-3">{{ __('Products') }}</h3>
+
     <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample" 
         aria-expanded="false" aria-controls="collapseExample">Importar productos</button>
     <div class="collapse mt-2 mb-2" id="collapseExample">

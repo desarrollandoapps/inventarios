@@ -8,7 +8,7 @@ class Venta extends Model
 {
     protected $fillable = [
         'anio',
-        'mes',
-        'totalCajas'
+        'totalCajas',
+        'valorTotal'
     ];
 }

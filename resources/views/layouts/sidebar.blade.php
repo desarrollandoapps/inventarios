@@ -51,6 +51,22 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
+        {{ __('Analysis') }}
+    </div>
+
+    <!-- Nav Item  -->
+    <li class="nav-item {{ Nav::isRoute('analisis.filtro') }} {{ Nav::isRoute('analisis.filtrado') }}">
+        <a class="nav-link" href="{{ route('analisis.filtro') }}">
+            <i class="fas fa-fw fa-funnel-dollar"></i>
+            <span>{{ __('Filter') }}</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
         {{ __('Users') }}
     </div>
 

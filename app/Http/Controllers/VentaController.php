@@ -20,13 +20,14 @@ class VentaController extends Controller
     public function index(Request $request)
     {
         $query = $request->buscar;
-        $ventas = App\Venta::where('mes', 'LIKE', '%' . $query . '%')
-                                    ->orWhere('anio', 'LIKE', '%' . $query . '%')
-                                    ->orderBy('id', 'desc')->paginate(10);
+        $ventas = App\Venta::where('anio', 'LIKE', '%' . $query . '%')
+                            ->orderBy('id', 'desc')
+                            ->paginate(10);
+        
         
         $date = Carbon::now();
         $date = $date->format('Y');
-        $anios = [$date - 1, $date, $date + 1];
+        $anios = [$date - 3, $date - 2, $date - 1, $date];
 
         return view('venta.index', compact('ventas', 'anios'));
     }
@@ -34,27 +35,14 @@ class VentaController extends Controller
     public function insert(Request $request)
     {
         $anio = $request->anio;
-        $mes = $request->mes;
 
         $query = App\Venta::where('anio', $anio)
-                    ->where('mes', $mes)
-                    ->first();
+                            ->first();
 
         if( $query )
         {
             return back()->with('error', 'Ya se ha cargado una venta para el periodo seleccionado');
         }
-        //Guardar Venta
-        $venta = new App\Venta;
-        $venta->anio = $request->anio;
-        $venta->mes = $request->mes;
-        $venta->totalCajas = $request->totalCajas;
-        $venta->valorTotal = $request->valorTotal;
-
-        $numeroVenta = App\Venta::orderBy('id', 'desc')->first();
-        $numeroVenta = $numeroVenta->id;
-        
-        // //Guardar detalles venta
         
         //Guardar en tabla temporal
         $file = $request->file('file');
@@ -63,23 +51,34 @@ class VentaController extends Controller
         {
             $import->import($file);
         } catch (\Exception $e) {
+            DB::table('detalle_temporals')->delete();
             return back()->with('error', 'Error al realizar la operación.');
         }
 
-        $total = DB::table('detalle_temporals')->sum('valor');
         $cantidades = DB::table('detalle_temporals')->sum('cantidad');
+        $total = DB::table('detalle_temporals')->sum('valor');
 
-        if( $total != $venta->valorTotal )
+        if( $cantidades != $request->totalCajas )
         {
-            return back()->with('error', 'No coincide el valor total de la venta');
-        }
-
-        if( $cantidades != $venta->cantidad )
-        {
+            DB::table('detalle_temporals')->delete();
             return back()->with('error', 'No coincide el total de cajas');
         }
 
+        if( $total != $request->valorTotal )
+        {
+            DB::table('detalle_temporals')->delete();
+            return back()->with('error', 'No coincide el valor total de la venta');
+        }
+
+        //Guardar Venta
+        $venta = new App\Venta;
+        $venta->anio = $request->anio;
+        $venta->totalCajas = $request->totalCajas;
+        $venta->valorTotal = $request->valorTotal;
         $venta->save();
+
+        $numeroVenta = App\Venta::orderBy('id', 'desc')->first();
+        $numeroVenta = $numeroVenta->id;
 
         App\DetalleTemporal::where('idVenta', null)
                             ->update(['idVenta' => $numeroVenta]);

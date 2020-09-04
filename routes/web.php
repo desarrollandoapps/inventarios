@@ -38,4 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('ventas', 'VentaController@index')->name('venta.index');
     Route::post('venta-insert', 'VentaController@insert')->name('venta.insert');
     Route::post('venta-import-list-excel', 'VentaController@importExcel')->name('venta.import.excel');
+    
+    Route::get('analisis/filtro', 'AnalisisController@verFiltro')->name('analisis.filtro');
+    Route::post('analisis/filtrar', 'AnalisisController@filtrar')->name('analisis.filtrar');
+    Route::get('analisis/filtrado', 'AnalisisController@filtrar')->name('analisis.filtrado');
 });

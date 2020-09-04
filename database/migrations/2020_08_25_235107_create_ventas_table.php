@@ -16,7 +16,6 @@ class CreateVentasTable extends Migration
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
             $table->integer('anio');
-            $table->integer('mes');
             $table->integer('totalCajas');
             $table->double('valorTotal',20,2);
             $table->timestamps();
