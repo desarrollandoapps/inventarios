@@ -30,6 +30,11 @@ class ProductoController extends Controller
         try
         {
             $import->import($file);
+            
+            if ($import->failures()->isNotEmpty())
+            {
+                return back()->withFailures($import->failures());
+            }
         } catch (\Exception $e) {
             return back()->with('error', 'Error al realizar la operación.');
         }

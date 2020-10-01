@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="form-row mt-3">
-                <button type="submit" class="btn btn-outline-primary mx-auto">Filtrar</button>
+                <button type="submit" class="btn btn-outline-primary mx-auto" onclick="asociar()">Filtrar</button>
             </div>
         </form>
     </div>
@@ -75,7 +75,8 @@
                 showConfirmButton: false,
                 allowOutsideClick: false,
                 allowEscapeKey: false,
-                html: '<i class="far fa-clock fa-7x"></i>',
+                html: '<img src="{{asset('img/loading.gif')}} " alt="cargando" width="100px">',
+                // imageUrl: "{{asset('img/cargando.gif')}}",
             });
             $('#formAdd').submit();
         }

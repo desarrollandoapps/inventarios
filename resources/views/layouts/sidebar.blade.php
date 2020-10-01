@@ -3,10 +3,11 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <img src="{{asset('img/svg/logo_texto.svg')}} " alt="Logo" class="logo_side">
         <div class="sidebar-brand-icon">
-            <i class="fas fa-pallet"></i>
+            {{-- <i class="fas fa-pallet"></i> --}}
         </div>
-        <div class="sidebar-brand-text mx-3">Estiba</div>
+        {{-- <div class="sidebar-brand-text mx-3">Estiba</div> --}}
     </a>
 
     <!-- Divider -->
@@ -62,10 +63,24 @@
         </a>
     </li>
     <!-- Nav Item  -->
-    <li class="nav-item {{ Nav::isRoute('analisis.abc') }}">
-        <a class="nav-link" href="{{ route('analisis.abc') }}">
+    <li class="nav-item {{ Nav::isRoute('analisis.verAbc') }} {{ Nav::isRoute('analisis.clasificacionABC') }} {{ Nav::isRoute('abc.grafico') }}">
+        <a class="nav-link" href="{{ route('analisis.verAbc') }}">
             <i class="fas fa-fw fa-sort-amount-down"></i>
             <span>{{ __('ABC Classification') }}</span>
+        </a>
+    </li>
+    <!-- Nav Item  -->
+    <li class="nav-item {{ Nav::isRoute('analisis.verXyz') }} {{ Nav::isRoute('analisis.clasificacionXYZ') }}">
+        <a class="nav-link" href="{{ route('analisis.verXyz') }}">
+            <i class="fas fa-fw fa-sort-alpha-down"></i>
+            <span>{{ __('XYZ Classification') }}</span>
+        </a>
+    </li>
+    <!-- Nav Item  -->
+    <li class="nav-item {{ Nav::isRoute('analisis.verAbcXyz') }} {{ Nav::isRoute('analisis.clasificacionABCXYZ') }}">
+        <a class="nav-link" href="{{ route('analisis.verAbcXyz') }}">
+            <i class="fas fa-fw fa-sort-numeric-down"></i>
+            <span>{{ __('ABC - XYZ Classification') }}</span>
         </a>
     </li>
 

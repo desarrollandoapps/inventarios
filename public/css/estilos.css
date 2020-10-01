@@ -1,3 +1,22 @@
-.logo-excel {
-    width: 30px;
+.exportar-excel {
+    color: cadetblue;
+}
+.exportar-excel:hover {
+    color: green;
+}
+.generar-grafico {
+    color: cadetblue;
+}
+.generar-grafico:hover {
+    color: blue;
+}
+#chartdiv {
+    width: 100%;
+    height: 500px;
+}
+.logo_side {
+    width: 80%;
+}
+.logo-sena {
+    height: 5rem;
 }

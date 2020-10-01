@@ -24,15 +24,13 @@ class ProveedorController extends Controller
     public function importExcel(Request $request)
     {
         $file = $request->file('file');
-        // $response = Excel::import(new ProveedorImport, $file);
         $import = new ProveedorImport();
-        try
+        $import->import($file);
+
+        if($import->failures()->isNotEmpty())
         {
-            $import->import($file);
-        } catch (\Exception $e) {
-            return back()->with('error', 'Error al realizar la operación.');
+            return back()->withFailures($import->failures());
         }
-        // dd($import);
 
         return back()->with('mensaje', 'Importación de proveedores completada');
     }

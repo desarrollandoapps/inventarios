@@ -31,9 +31,8 @@
         </div>
     @endif
     
-    <a href="{{route('filtrado.export.excel')}} " class="float-right">
-        Exportar a
-        <img src="{{asset('img/excel.png')}}" alt="excel" class="logo-excel">
+    <a href="{{route('filtrado.export.excel')}} " class="exportar-excel float-right" data-toggle="tooltip" data-placement="left" title="Exportar a Excel">
+        <i class="fas fa-fw fa-file-excel fa-2x"></i>
     </a>
 
     <h3 class="mb-3">{{ __('Filtered') }}</h3>
@@ -56,7 +55,7 @@
                 <tr>
                     <td>{{$item->codigo}}</td>
                     <td>{{$item->descripcion}}</td>
-                    <td>{{$item->valor}}</td>
+                    <td>${{number_format($item->valor, 0, ',', '.')}}</td>
                 </tr>
             @endforeach
         </tbody>

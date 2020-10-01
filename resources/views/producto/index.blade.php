@@ -15,6 +15,48 @@
             <span aria-hidden="true">&times;</span>
         </div>
     @endif
+    @if (isset($errors) && $errors->any())
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <p>Error al realizar la operación.</p>
+            @foreach ($errors->all() as $error)
+                {{$error}}
+            @endforeach
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </div>
+    @endif
+    @if (Session::has('failures'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <table class="table table-danger">
+                <thead>
+                    <tr>
+                        <td>Fila</td>
+                        <td>Atributo</td>
+                        <td>Errores</td>
+                        <td>Valor</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Session::get('failures') as $item)
+                        <tr>
+                            <td>{{$item->row()}}</td>
+                            <td>{{$item->attribute()}}</td>
+                            <td>
+                                <ul>
+                                    @foreach ($item->errors() as $e)
+                                        <li>{{$e}}</li>
+                                    @endforeach
+                                </ul>
+                            </td>
+                            <td>{{$item->values()[$item->attribute()]}}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </div>
+    @endif
 
     <h3 class="mb-3">{{ __('Products') }}</h3>
 

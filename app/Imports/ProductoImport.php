@@ -4,16 +4,19 @@ namespace App\Imports;
 
 use App;
 use App\Producto;
+use App\Exceptions\Handler;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Validators\Failure;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
 
-class ProductoImport implements ToModel
+class ProductoImport implements ToModel, SkipsOnError, WithValidation, SkipsOnFailure
 {
-    use Importable;
+    use Importable, SkipsErrors, SkipsFailures;
 
     /**
     * @param array $row
@@ -32,5 +35,12 @@ class ProductoImport implements ToModel
             'descripcion' => $row[1],
             'idProveedor' => $proveedor->id
         ]);
+    }
+
+    public function rules(): array
+    {
+        return [
+            '*.0' => ['unique:productos,referencia']
+        ];
     }
 }

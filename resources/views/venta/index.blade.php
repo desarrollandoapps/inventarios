@@ -25,7 +25,7 @@
                 @foreach ($errors->all() as $item)
                     <li> {{$item}} </li>
                 @endforeach
-            </ul>    
+            </ul>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </div>
@@ -33,36 +33,32 @@
 
     <h3 class="mb-3">{{ __('Sales') }}</h3>
 
-    <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample" 
+    <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample"
         aria-expanded="false" aria-controls="collapseExample">Importar Venta</button>
     <div class="collapse mt-2 mb-2" id="collapseExample">
-        <form action="{{route('venta.insert')}}" id="formAdd" method="post" 
+        <form action="{{route('venta.insert')}}" id="formAdd" method="post"
             enctype="multipart/form-data" class="hidden needs-validation" novalidate>
             @csrf
             <div class="form-row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="anio">Año</label>
-                    <select name="anio" id="anio" class="custom-select d-inline-block" required>
+                    <select name="anio" id="anio" class="form-control d-inline-block" required>
                         <option value="">Seleccione el año...</option>
                         @foreach ($anios as $anio)
                             <option value="{{$anio}}">{{$anio}}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-4">
-                    <label for="totalCajas">Total cajas</label>
-                    <input type="number" name="totalCajas" id="totalCajas" min="1" class="form-control" required>
-                </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="valorTotal">Valor total</label>
-                    <input type="number" name="valorTotal" id="totalCajas" min="1" class="form-control" required>
+                    <input type="number" name="valorTotal" id="valorTotal" min="1" class="form-control" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="input-group mb-3 mt-3">
                     <input type="file" name="file" id="file" class="form-control" required>
                     <div class="input-group-append">
-                        <button type="submit" class="btn btn-outline-secondary btn-sm">Importar</button>
+                        <button type="submit" class="btn btn-outline-secondary btn-sm" onclick="asociar()">Importar</button>
                     </div>
                 </div>
             </div>
@@ -75,8 +71,8 @@
                     <tr>
                         <th>id</th>
                         <th>Año</th>
-                        <th>Total Cajas</th>
                         <th>Valor Total</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -84,8 +80,14 @@
                         <tr>
                             <td> {{$item->id}}</td>
                             <td> {{$item->anio}}</td>
-                            <td> {{number_format($item->totalCajas, 0, ',', '.')}}</td>
                             <td class="text-right"> ${{number_format($item->valorTotal, 0, ',', '.')}}</td>
+                            <td>
+                                <form action="{{route('venta.delete', $item->id)}}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" rel="tooltip" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('¿Confirma la eliminación de la venta?')"><i class="fas fa-xs fa-trash"></i></button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -107,9 +109,16 @@
                 showConfirmButton: false,
                 allowOutsideClick: false,
                 allowEscapeKey: false,
-                html: '<i class="far fa-clock fa-7x"></i>',
+                html: '<i class="far fa-clock fa-7x"></i>'
             });
-            $('#formAdd').submit();
+            // $('#formAdd').submit();
+            var form = $('#formAdd');
+
+            if( document.getElementById("anio").value == "" || document.getElementById("valorTotal").value == "" || 
+                document.getElementById("file").value == "" )
+            {
+                swal.close();
+            }
         }
         (function() {
             'use strict';
@@ -122,8 +131,8 @@
                     if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
+                    }
+                    form.classList.add('was-validated');
                 }, false);
                 });
             }, false);

@@ -55,11 +55,16 @@
     "Select \"Logout\" below if you are ready to end your current session.": "Seleccione \"Cerrar sesión\" si está listo para finalizar su sesión actual.",
     "Cancel": "Cancelar",
     "About": "Acerca de",
+    "There was an error on row :row. :message": "Hubo un error en la fila :row. :message",
     "Providers": "Proveedores",
     "Products": "Productos",
     "Sales": "Ventas",
     "Analysis": "Análisis",
     "Filter": "Filtro",
     "Filtered": "Filtrado",
-    "ABC Classification": "Clasificación ABC"
+    "ABC Classification": "Clasificación ABC",
+    "XYZ Classification": "Clasificación XYZ",
+    "ABC Graph": "Gráfico ABC",
+    "Full Classification": "Clasificación Completa",
+    "ABC - XYZ Classification": "Clasificación ABC - XYZ"
 }

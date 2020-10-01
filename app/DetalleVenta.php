@@ -7,9 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class DetalleVenta extends Model
 {
     protected $fillable = [
-        'cantidad',
-        'valor',
         'idVenta',
-        'idProducto'
+        'idProducto',
+        'enero',
+        'febrero',
+        'marzo',
+        'abril',
+        'mayo',
+        'junio',
+        'julio',
+        'agosto',
+        'septiembre',
+        'octubre',
+        'noviembre',
+        'diciembre',
+        'total'
     ];
 }

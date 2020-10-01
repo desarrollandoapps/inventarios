@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::get('ventas', 'VentaController@index')->name('venta.index');
     Route::post('venta-insert', 'VentaController@insert')->name('venta.insert');
+    Route::delete('venta-delete/{id}', 'VentaController@delete')->name('venta.delete');
     Route::post('venta-import-list-excel', 'VentaController@importExcel')->name('venta.import.excel');
     
     Route::get('analisis/filtro', 'AnalisisController@verFiltro')->name('analisis.filtro');
@@ -44,5 +45,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('analisis/filtrado', 'AnalisisController@filtrar')->name('analisis.filtrado');
     Route::get('filtrado-export-excel', 'AnalisisController@filtradoExportExcel')->name('filtrado.export.excel');
     
-    Route::get('analisis/abc', 'AnalisisController@abc')->name('analisis.abc');
+    Route::get('analisis/ver-abc', 'AnalisisController@verAbc')->name('analisis.verAbc');
+    Route::post('analisis/abc', 'AnalisisController@clasificacionABC')->name('analisis.clasificacionABC');
+    Route::get('analisis/abc-export-excel', 'AnalisisController@abcExportExcel')->name('abc.export.excel');
+    Route::get('analisis/abc-graficar', 'AnalisisController@graficarABC')->name('abc.graficar');
+    Route::get('analisis/abc-grafico', 'AnalisisController@graficoABC')->name('abc.grafico');
+    
+    Route::get('analisis/ver-xyz', 'AnalisisController@verXyz')->name('analisis.verXyz');
+    Route::post('analisis/xyz', 'AnalisisController@clasificacionXYZ')->name('analisis.clasificacionXYZ');
+    Route::get('analisis/xyz-export-excel', 'AnalisisController@xyzExportExcel')->name('xyz.export.excel');
+    
+    Route::get('analisis/ver-abcxyz', 'AnalisisController@verAbcXyz')->name('analisis.verAbcXyz');
+    Route::post('analisis/abcxyz', 'AnalisisController@clasificacionABCXYZ')->name('analisis.clasificacionABCXYZ');
+    Route::get('analisis/full-export-excel', 'AnalisisController@fullExportExcel')->name('full.export.excel');
+    
+    Route::get('analisis/ver-recomendaciones', 'AnalisisController@verRecomendaciones')->name('analisis.verRecomendaciones');
 });

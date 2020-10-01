@@ -20,6 +20,12 @@
         </form>
     </div>
 
+    <div class="ml-auto">
+        <img src="{{asset('img/logo_sena.png')}} " alt="logo-sena" height="20px" class="mr-2">
+        <img src="{{asset('img/logo_sennova.png')}} " alt="logo-sennova" height="20px" class="mr-2">
+        <img src="{{asset('img/logo_gesicom.png')}} " alt="logo-gesicom" height="20px">
+    </div>
+
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
 

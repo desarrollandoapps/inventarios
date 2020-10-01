@@ -29,8 +29,19 @@ class DetalleTemporalImport implements ToModel
 
         return new DetalleTemporal([
             'idProducto' => $producto->id,
-            'cantidad' => $row[1],
-            'valor' => $row[2],
+            'enero' => $row[1],
+            'febrero' => $row[2],
+            'marzo' => $row[3],
+            'abril' => $row[4],
+            'mayo' => $row[5],
+            'junio' => $row[6],
+            'julio' => $row[7],
+            'agosto' => $row[8],
+            'septiembre' => $row[9],
+            'octubre' => $row[10],
+            'noviembre' => $row[11],
+            'diciembre' => $row[12],
+            'total' => $row[13],
         ]);
     }
 }

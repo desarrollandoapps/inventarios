@@ -15,8 +15,19 @@ class CreateDetalleVentasTable extends Migration
     {
         Schema::create('detalle_ventas', function (Blueprint $table) {
             $table->id();
-            $table->integer('cantidad');
-            $table->double('valor');
+            $table->double('enero');
+            $table->double('febrero');
+            $table->double('marzo');
+            $table->double('abril');
+            $table->double('mayo');
+            $table->double('junio');
+            $table->double('julio');
+            $table->double('agosto');
+            $table->double('septiembre');
+            $table->double('octubre');
+            $table->double('noviembre');
+            $table->double('diciembre');
+            $table->double('total');
             $table->foreignId('idVenta');
             $table->foreign('idVenta')->references('id')->on('ventas');
             $table->foreignId('idProducto');
