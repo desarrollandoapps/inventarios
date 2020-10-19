@@ -58,6 +58,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('analisis/ver-abcxyz', 'AnalisisController@verAbcXyz')->name('analisis.verAbcXyz');
     Route::post('analisis/abcxyz', 'AnalisisController@clasificacionABCXYZ')->name('analisis.clasificacionABCXYZ');
     Route::get('analisis/full-export-excel', 'AnalisisController@fullExportExcel')->name('full.export.excel');
-    
+
     Route::get('analisis/ver-recomendaciones', 'AnalisisController@verRecomendaciones')->name('analisis.verRecomendaciones');
 });

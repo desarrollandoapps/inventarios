@@ -30,36 +30,11 @@
             <span aria-hidden="true">&times;</span>
         </div>
     @endif
+
+    <h3 class="mb-3">{{ __('Recomendaciones') }}</h3>
     
-    <a href="{{route('filtrado.export.excel')}} " class="exportar-excel float-right" data-toggle="tooltip" data-placement="left" title="Exportar a Excel">
-        <i class="fas fa-fw fa-file-excel fa-2x"></i>
-    </a>
-
-    <h3 class="mb-3">{{ __('Filtered') }}</h3>
-
-    <h4 class="text-center">Año: {{$anio}}</h4>
-    <h5 class="text-center">
-        <span class="font-weight-bold">Límite inferior:</span> ${{number_format($inferior, 0, ',', '.')}} - 
-        <span class="font-weight-bold">Límite superior:</span> ${{number_format($superior, 0, ',', '.')}} 
-    </h5>
-    <table class="table mt-4">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Descripción</th>
-                <th>Valor</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($productos as $item)
-                <tr>
-                    <td>{{$item->codigo}}</td>
-                    <td>{{$item->descripcion}}</td>
-                    <td>${{number_format($item->total, 0, ',', '.')}}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    
+    
 
 @endsection
 

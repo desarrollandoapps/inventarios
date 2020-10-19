@@ -25,7 +25,7 @@
                                 <h4 class="font-weight-bold">Regional Tolima</h4>
                                 <h4 class="font-weight-bold">Centro de Comercio y Servicios</h4>
                                 <h5 class="font-weight-bold">Grupo de investigación GESICOM</h5>
-                                <h5 class="font-weight-bold">Desarrollado por Jose Oviedo</h5>
+                                <h5 class="font-weight-bold">Desarrollado por Jose Alonso Oviedo Monroy</h5>
                                 <h6 class="font-weight-bold">2020</h6>
                             </div>
                         </div>

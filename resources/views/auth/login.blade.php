@@ -47,7 +47,11 @@
                                             {{ __('Login') }}
                                         </button>
                                     </div>
-
+                                    <div class="text-right">
+                                        <a class="small" href="{{ route('register') }}">
+                                            {{ __('¿No está registrado?') }}
+                                        </a>
+                                    </div>
                                 </form>
 
                                 <hr>

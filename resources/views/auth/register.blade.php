@@ -54,7 +54,7 @@
 
                                 <div class="text-center">
                                     <a class="small" href="{{ route('login') }}">
-                                        {{ __('Already have an account? Login!') }}
+                                        {{ __('¿Ya está registrado? ¡Ingrese!') }}
                                     </a>
                                 </div>
                             </div>

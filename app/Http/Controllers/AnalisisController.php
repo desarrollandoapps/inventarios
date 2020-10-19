@@ -450,31 +450,46 @@ class AnalisisController extends Controller
 
     public function verRecomendaciones()
     {
-        $full = App\ABC::join('x_y_z_s', 'a_b_c_s.referencia', 'x_y_z_s.referencia')
-                        ->select('x_y_z_s.tipo as tipoXYZ', 'a_b_c_s.referencia', 'a_b_c_s.descripcion', 'a_b_c_s.tipo as tipoABC')
-                        ->get();
+        return view('analisis.recomendaciones');
+        
+        // $full = App\ABC::join('x_y_z_s', 'a_b_c_s.referencia', 'x_y_z_s.referencia')
+        //                 ->select('x_y_z_s.tipo as tipoXYZ', 'a_b_c_s.referencia', 'a_b_c_s.descripcion', 'a_b_c_s.tipo as tipoABC')
+        //                 ->get();
             
-        $multiproducto = App\ABC::join('productos', 'a_b_c_s.referencia', 'productos.referencia')
-                                ->join('proveedors', 'productos.idProveedor', 'proveedors.id')
-                                ->select('proveedors.id as idProveedor', 'a_b_c_s.descripcion as producto', 'proveedors.nombre as proveedor')
-                                ->where('a_b_c_s.tipo', 'A')
-                                ->orWhere('a_b_c_s.tipo', 'B')
-                                // ->groupBy('proveedors.id')
-                                ->orderBy('proveedors.nombre', 'asc')
-                                ->get();
+        // $multiproducto = App\ABC::join('productos', 'a_b_c_s.referencia', 'productos.referencia')
+        //                         ->join('proveedors', 'productos.idProveedor', 'proveedors.id')
+        //                         ->select('proveedors.id as idProveedor', 'a_b_c_s.referencia', 'a_b_c_s.descripcion', 'a_b_c_s.tipo', 'proveedors.nombre as proveedor')
+        //                         ->where('a_b_c_s.tipo', 'A')
+        //                         ->orWhere('a_b_c_s.tipo', 'B')
+        //                         ->orderBy('proveedors.nombre', 'asc')
+        //                         ->orderBy('a_b_c_s.tipo', 'ASC')
+        //                         ->get();
 
-        $proveedor = null;
-        $tabla = Array();
-        foreach ($multiproducto as $i => $item) {
-            if ($i < count($multiproducto) - 1)
-            {
-                $proveedor = $item->idProveedor;
-                if( $proveedor != $multiproducto[$i + 1]->idProveedor )
-                {
-                    echo $proveedor . "<br>";
-                }
-            }
-        }
+        // $comunes = array();
+        // $productos = array();
+        // $pos = 0;
+        // for ($i = 0; $i < count($multiproducto) - 1; $i++) {
+        //     $producto1 = $multiproducto[$i];
+        //     $producto2 = $multiproducto[$i + 1];
+
+        //     if($producto1->idProveedor == $producto2->idProveedor)
+        //     {
+        //         // echo $producto1;
+        //         $productos[] = $producto1;
+        //     }
+        //     else
+        //     {
+        //         $comunes[$pos] = $productos;
+        //         $pos++;
+        //         $productos = array();
+        //     }
+        // }
+        
+        // foreach ($comunes[0] as $item) {
+        //     echo $item['descripcion'] . "<br>";
+        // }
+
+        // return view('analisis.recomendaciones', compact('comunes'));
 
                                 
         // echo $multiproducto;
